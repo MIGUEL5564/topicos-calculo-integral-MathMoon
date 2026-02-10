@@ -1,9 +1,19 @@
+const CORREOS_PERMITIDOS = [
+  "alumno1@gmail.com",
+  "alumno2@gmail.com",
+  "skornillmoon@gmail.com"
+];
 function loginAlumno() {
-  const nombre = document.getElementById("nombre").value;
-  const email = document.getElementById("email").value;
+  const nombre = document.getElementById("nombre").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
 
   if (!nombre || !email) {
     alert("Completa todos los campos");
+    return;
+  }
+
+  if (!CORREOS_PERMITIDOS.includes(email)) {
+    alert("⛔ Acceso no autorizado. Contacta al administrador.");
     return;
   }
 
@@ -11,7 +21,7 @@ function loginAlumno() {
 
   if (!alumnos[email]) {
     alumnos[email] = {
-      nombre: nombre,
+      nombre,
       sesiones: [],
       progreso: 0,
       cursoCompletado: false
@@ -23,6 +33,7 @@ function loginAlumno() {
 
   mostrarCurso();
 }
+
 
 function mostrarCurso() {
   const usuario = localStorage.getItem("usuarioActivo");
