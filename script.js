@@ -43,6 +43,7 @@ function mostrarCurso() {
   document.getElementById("curso").style.display = "block";
 
   cargarProgreso();
+  actualizarBloqueos();
 }
 
 window.onload = mostrarCurso;
@@ -79,4 +80,22 @@ function completarSesion(num) {
 
   localStorage.setItem("alumnos", JSON.stringify(alumnos));
   actualizarBarra(alumnos[email].progreso);
+  actualizarBloqueos(); 
+}
+
+function actualizarBloqueos() {
+  const email = localStorage.getItem("usuarioActivo");
+  const alumnos = JSON.parse(localStorage.getItem("alumnos"));
+  if (!email || !alumnos[email]) return;
+
+  const sesionesCompletadas = alumnos[email].sesiones;
+
+  for (let i = 2; i <= 6; i++) {
+    const sesion = document.getElementById("sesion" + i);
+    if (sesionesCompletadas.includes(i - 1)) {
+      sesion.classList.remove("bloqueada");
+    } else {
+      sesion.classList.add("bloqueada");
+    }
+  }
 }
