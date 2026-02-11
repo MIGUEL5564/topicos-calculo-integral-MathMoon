@@ -126,3 +126,20 @@ footer {
   background: #22d3ee;     /* azul brillante */
 }
 
+.bloqueada {
+  opacity: 0.4;
+  pointer-events: none;
+  position: relative;
+}
+
+.bloqueada::after {
+  content: "🔒 Completa la sesión anterior para desbloquear";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: crimson;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+}
