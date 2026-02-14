@@ -143,3 +143,11 @@ footer {
   font-size: 14px;
   border-radius: 6px;
 }
+
+.form-container {
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
